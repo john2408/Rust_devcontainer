@@ -1,0 +1,12 @@
+[package]
+name = "hello_remote_world"
+version = "0.1.0"
+authors = ["John Torres"]
+edition = "2021"
+
+#[lib]
+#path ="./src/lib/lib.rs"
+
+[dependencies]
+rand = "0.8.5"
+
