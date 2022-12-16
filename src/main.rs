@@ -195,4 +195,169 @@ fn main() {
     let st2 = st1.replace("A", "Another");
     println!("{}", st2);
 
+    // Working with Strings and Vectors
+    // Eliminate duplicates
+    let st3 = String::from("x r t b h k k a m c");
+    let mut v1: Vec<char> = st3.chars().collect();
+    v1.sort();
+    v1.dedup();
+
+    for char in v1{
+        println!("{}",char);
+    }
+
+    // Convert to heap allocated string
+    let st4: &str = "Random String";
+    let mut st5: String = st4.to_string();
+    println!("{}", st5);
+
+    // Convert str into array of bytes
+    let byte_arr1 = st5.as_bytes();
+
+    // Slice a string
+    let st6 = &st5[0..6];
+    println!("String lenght : {}", st6.len());
+    st5.clear();
+    
+    // Combine strings
+    let st6 = String::from("Just Some");
+    let st7 = String::from(" word");
+    let st8 = st6 + &st7;
+    for char in st8.bytes(){
+        println!("{}", char);
+    }
+
+    // ------------------------------
+    // Casting Variables
+    // ------------------------------
+    let int_u8 : u8 = 5;
+    let int2_u8 : u8 = 4;
+    let int3_u23: u32 = (int_u8 as u32) + (int2_u8 as u32);
+
+
+    // ------------------------------
+    // Enumerated type
+    // ------------------------------
+    enum Day{
+        Monday,  
+        Tuesday,
+        Wednesday, 
+        Thursday, 
+        Friday, 
+        Saturday, 
+        Sunday
+    }
+
+    // Implementing as variable type
+    impl Day{
+        fn is_weekend(&self) -> bool{
+            match self {
+                Day::Saturday | Day::Sunday => true,
+                _ => false
+                
+            }
+        }
+    }
+
+    // test it
+    let today:Day = Day::Monday;
+    match today{
+        Day::Monday => println!("Everyone hates Monday"),
+        Day::Tuesday => println!("Donut Day"),
+        Day::Wednesday => println!("Hump day"),
+        Day::Thursday => println!("Pay Day"),
+        Day::Friday => println!("Almost Weekend"),
+        Day::Saturday => print!("Weekend"),
+        Day::Sunday => println!("Weekend"),
+    }
+
+    println!("Is today the weekend {}", today.is_weekend());
+
+    // ------------------------------
+    // Vectors
+    // Similar to array, size must be defined, 
+    // can mutate if mut
+    // ------------------------------
+
+    // Create empty vector
+    let vec1: Vec<i32> = Vec::new();
+
+    // Create vector and defined values
+    let mut vec2 = vec![1,2,3,4];
+    
+    //add value to end of vector
+    vec2.push(5);
+
+    println!("1st: {}", vec2[0]);
+
+    let second: &i32 = &vec2[1];
+
+    match vec2.get(1){
+        Some(second) => println!("2nd: {}", second),
+        None => println!("No 2nd value"),
+    }
+
+    for val in &mut vec2{
+        *val *= 2; // *i to be able to manipulate the i variable
+    }
+
+    for val in &vec2{
+        println!("{}", val);
+    }
+
+    println!("Vec Length {}", vec2.len());
+    println!("Pop : {:?}", vec2.pop());
+
+    // ------------------------------
+    // Functions
+    // ------------------------------
+
+
+    say_hello();
+
+    get_sum(5, 4);
+
+    println!("Sum is {}", get_sum2(5, 4));
+
+    println!("Sum is {}", get_sum3(5, 4));
+
+    let (val_1, val2) = get_2(3);
+
+    println!("Nums : val1: {}, val2: {}", val_1, val2);
+
+    let num_list = vec![1,2,3,4,5];
+
+    println!("Sum of list is {}", sum_list(&num_list));
+
+
+
+}
+
+fn sum_list(list: &[i32]) -> i32{
+    let mut sum = 0;
+    for &val in list.iter(){
+        sum += &val;
+    }
+    sum
+}
+
+
+fn say_hello(){
+    println!("Hello");
+}
+
+fn get_sum(x : i32, y: i32){
+    println!("{} + {} = {}", x, y, x +y)
+}
+
+fn get_sum2(x : i32, y: i32) -> i32{
+    x + y
+}
+
+fn get_sum3(x : i32, y: i32) -> i32{
+    return x + y
+}
+
+fn get_2(x: i32) -> (i32, i32){
+    return (x+1, x+2)
 }
