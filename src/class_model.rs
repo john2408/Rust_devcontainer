@@ -2,7 +2,7 @@
 //extern crate rand;
 
 use rand::seq::SliceRandom;
-use xgboost::{TrainOptions, Booster, DMatrix};
+use xgboost::{Booster, DMatrix, TrainOptions};
 
 fn main() {
     // Load the iris dataset
