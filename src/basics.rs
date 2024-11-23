@@ -1,12 +1,25 @@
 #![allow(unused)]
 
-use std::io;
+use polars_core::prelude::*;
+use polars_io::prelude::*;
+use std::fs::File;
+use polars::frame::DataFrame;
 use rand::Rng;
 use std::io::{Write, BufRead, BufReader, ErrorKind};
-use std::fs::File;
 use std::cmp::Ordering;
+use std::env;
 
 fn main() {
+
+    let input_path = "input_data/imdb_top_1000.csv";
+    let path = env::current_dir().unwrap().join(input_path);
+    println!("Path is {}", path.display());
+
+    let df = CsvReadOptions::default()
+                .with_has_header(true)
+                .try_into_reader_with_file_path(Some("iris.csv".into()))?
+                .finish()
+  
 
     // for declaring mutable variables
     let mut name = String::new();
